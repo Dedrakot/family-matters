@@ -19,7 +19,7 @@ export default function createTree(element, data) {
   const Card = f3.elements.Card({
     store,
     svg: view.svg,
-    card_dim: {w:400,h:110,text_x:textX,text_y:15,img_w:imgW,img_h:imgH,img_x:5,img_y:5},
+    card_dim: {w:400,h:110,text_x:textX,text_y:5,img_w:imgW,img_h:imgH,img_x:5,img_y:5},
     card_display: cardDisplay,
     mini_tree: true,
     link_break: true
@@ -37,16 +37,28 @@ export default function createTree(element, data) {
 
 function cardDisplay(d) {
   const data = d.data
-  const first = data.lastName || ''
-  const second = `${data.firstName || ''} ${data.middleName || ''}`
+  const firstLine = data.lastName || ''
+  const firstName = data.firstName || ''
+  const middleName = data.middleName || ''
+  let secondLine
+  let thirdLine
+  // TODO: calculate based on font symbol sizes
+  if (firstName.length + middleName.length > 20) {
+      secondLine = firstName
+      thirdLine = middleName
+  } else {
+      secondLine = firstName + ' ' + middleName
+      thirdLine = ''
+  }
   const birthday = dateView(data.birthday)
   const deathday = dateView(data.deathday)
   const dates = deathday.length > 0 ? (birthday.length > 0 ? birthday : "...") + " - " + deathday : birthday 
   const adopted = data['adopted'] ? `<tspan x="0" dy="17" class="adopted">${adoptedLabel(data.gender)}</tspan>`:''
   return `
-    <tspan x="0" dy="25" class="label">${first}</tspan>
-    <tspan x="0" dy="25" class="label">${second}</tspan>
-    <tspan x="0" dy="17" class="birth-date">${dates}</tspan>` + 
+    <tspan x="0" dy="25" class="label">${firstLine}</tspan>
+    <tspan x="0" dy="25" class="label">${secondLine}</tspan>
+    <tspan x="0" dy="25" class="label">${thirdLine}</tspan>
+    <tspan x="0" dy="20" class="birth-date">${dates}</tspan>` + 
     adopted
 }
 
