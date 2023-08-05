@@ -1,6 +1,80 @@
 body {
   margin: 0;
-  margin-top: 1vh;
+  background-color: #3b5560;
+}
+
+.search-container {
+  position: relative;
+  z-index: 1;
+}
+
+.search-container .input-field {
+  width: 450px;
+  max-width: 85%;
+  margin: auto;
+  position: absolute;
+  top: 13px;
+  left: 0;
+  right: 0;
+  font-size: 15px;
+  font-family: sans-serif;
+  line-height: 1.5;
+  font-weight: normal;
+  color: rgba(0,0,0,0.87);
+}
+
+.search-container input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #9e9e9e;
+  border-radius: 0;
+  outline: none;
+  width: 100%;
+  font-size: 16px;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  height: 2.5rem!important;
+  margin: 0 0 8px 0;
+  padding: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-transition: border .3s, -webkit-box-shadow .3s;
+  transition: border .3s, -webkit-box-shadow .3s;
+  transition: box-shadow .3s, border .3s;
+  transition: box-shadow .3s, border .3s, -webkit-box-shadow .3s;
+  overflow: visible;
+}
+
+.search-container label {
+  color: #9e9e9e;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1rem;
+    cursor: text;
+    -webkit-transition: color .2s ease-out, -webkit-transform .2s ease-out;
+    transition: color .2s ease-out, -webkit-transform .2s ease-out;
+    transition: transform .2s ease-out, color .2s ease-out;
+    transition: transform .2s ease-out, color .2s ease-out, -webkit-transform .2s ease-out;
+    -webkit-transform-origin: 0% 100%;
+    transform-origin: 0% 100%;
+    text-align: initial;
+    -webkit-transform: translateY(12px);
+    transform: translateY(12px);
+}
+
+.search-container.active input {
+  border-bottom: 1px solid #26a69a;
+  -webkit-box-shadow: 0 1px 0 0 #26a69a;
+  box-shadow: 0 1px 0 0 #26a69a;
+}
+
+.search-container.active label {
+  -webkit-transform: translateY(-8px)scale(0.8);
+  transform: translateY(-8px)scale(0.8);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
 }
 
 .f3 {
@@ -16,7 +90,6 @@ body {
 .f3 svg.main_svg {
   width: 100%;
   height: 100%;
-  background-color: #3b5560;
   color: #3b5560;
 }
 .f3 svg.main_svg text {
@@ -86,7 +159,7 @@ body {
 }
 .f3 .card_break_link, .f3 .link_upper, .f3 .link_lower, .f3 .link_particles {
   transform-origin: 50% 50%;
-  transition: 1s;
+  transition: 1s;font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
 }
 .f3 .card_break_link {
   color: #fff;

@@ -1,13 +1,22 @@
 import createTree from "./ftree.js"
+import initSearch from "./search.js"
 
 const familyChartEl = document.getElementById('familyChart')
-const data = selectCentralMember(
-    global.centerMemberId,
-    global.getFamilyData().map(path2Avatar))
+const data = global.getFamilyData().map(path2Avatar)
 
 console.log("Количество людей в базе: " + data.length)
 
-createTree(familyChartEl, data)
+const {store} = createTree(familyChartEl, data, global.initialMainId)
+
+const searchEl = document.getElementById('searchField')
+initSearch(searchEl, data, updateMainId)
+
+function updateMainId(id) {
+    store.update.mainId(id);
+    store.update.tree({
+        tree_position: 'inherit'
+    });
+}
 
 function path2Avatar(item) {
     const data = item.data
@@ -26,18 +35,4 @@ function path2Avatar(item) {
         data['avatar'] = profilePath + ext   
     }
     return item
-}
-
-function selectCentralMember(id, data) {
-    if(data.length > 0 && data[0].id !== id) {
-        for (let i=1; i < data.length; i++) {
-            if(data[i].id === id) {
-                const tmp = data[0]
-                data[0] = data[i]
-                data[i] = tmp
-                break;
-            }
-        }
-    }
-    return data
 }

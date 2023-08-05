@@ -1,8 +1,9 @@
 import f3 from "./family-chart.js"
 
-export default function createTree(element, data) {
+export default function createTree(element, data, mainId) {
   const store = f3.createStore({
     data: data,
+    main_id: mainId,
     node_separation: 450,
     level_separation: 150,
     i18n: i18n,
