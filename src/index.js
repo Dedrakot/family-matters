@@ -1,8 +1,10 @@
 import createTree from "./ftree.js"
 import initSearch from "./search.js"
+import flagComponent from "./flagComponent.js"
 
 const familyChartEl = document.getElementById('familyChart')
-const data = global.getFamilyData().map(path2Avatar)
+const data = global.getFamilyData()
+data.forEach(path2Avatar)
 
 console.log("Количество людей в базе: " + data.length)
 

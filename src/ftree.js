@@ -1,4 +1,5 @@
 import f3 from "./family-chart.js"
+import flagComponent from "./flagComponent.js"
 
 export default function createTree(element, data, mainId, updateFn) {
   const store = f3.createStore({
@@ -17,13 +18,15 @@ export default function createTree(element, data, mainId, updateFn) {
   })
   const imgW = 100, imgH = 100
   const textX = imgW + 10
+  const flags = flagComponent()
   const Card = f3.elements.Card({
     store,
     svg: view.svg,
     card_dim: {w:400,h:110,text_x:textX,text_y:5,img_w:imgW,img_h:imgH,img_x:5,img_y:5},
     card_display: cardDisplay,
     mini_tree: true,
-    link_break: true
+    link_break: true,
+    custom_elements: [{el: (d, card_dim) => flags.images(d.data.flags, card_dim)}],
   })
 
   view.setCard(Card)
