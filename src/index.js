@@ -6,16 +6,24 @@ const data = global.getFamilyData().map(path2Avatar)
 
 console.log("Количество людей в базе: " + data.length)
 
-const {store} = createTree(familyChartEl, data, global.initialMainId)
+const {store} = createTree(familyChartEl, data, global.initialMainId, treeUpdated)
 
 const searchEl = document.getElementById('searchField')
-initSearch(searchEl, data, updateMainId)
+const search = initSearch(searchEl, store, updateMainId)
 
 function updateMainId(id) {
-    store.update.mainId(id);
-    store.update.tree({
-        tree_position: 'inherit'
-    });
+    if (data.find(el => el.id === id) !== undefined) {
+        store.update.mainId(id);
+        store.update.tree({
+            tree_position: 'inherit'
+        });
+    } else {
+        console.log(`Id {${id}} not found`)
+    }
+}
+
+function treeUpdated() {
+    search && search.updateIdField(store.state.main_id)
 }
 
 function path2Avatar(item) {

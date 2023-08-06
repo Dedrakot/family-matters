@@ -1,6 +1,6 @@
 import f3 from "./family-chart.js"
 
-export default function createTree(element, data, mainId) {
+export default function createTree(element, data, mainId, updateFn) {
   const store = f3.createStore({
     data: data,
     main_id: mainId,
@@ -27,7 +27,10 @@ export default function createTree(element, data, mainId) {
   })
 
   view.setCard(Card)
-  store.setOnUpdate(props => view.update(props || {}))
+  store.setOnUpdate(props => {
+    updateFn && updateFn()
+    view.update(props || {})
+  })
   store.update.tree({initial: true})
 
   return {
