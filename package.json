@@ -3,7 +3,8 @@
     "family-chart": "^0.0.0-beta-1"
   },
   "dependencies": {
-    "d3": "^7.8.5"
+    "d3": "^7.8.5",
+    "flexsearch": "^0.7.31"
   },
   "devDependencies": {
     "@babel/core": "^7.22.9",

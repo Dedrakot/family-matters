@@ -9,14 +9,14 @@ body {
 }
 
 .top-el {
-  width: 550px;
+  width: 650px;
   max-width: 85%;
   margin: auto;
   position: absolute;
   top: 13px;
   left: 0;
   right: 0;
-  font-size: 15px;
+  font-size: 20px;
   font-family: sans-serif;
   line-height: 1.5;
   font-weight: normal;
@@ -24,7 +24,7 @@ body {
 }
 
 .search-field {
-  width: 350px;
+  width: 450px;
   display: inline-block;
   position: relative;
 }
@@ -34,6 +34,7 @@ body {
   width: 130px;
   display: inline-block;
   position: relative;
+  vertical-align:top; 
 }
 
 .search-container input {
@@ -44,7 +45,7 @@ body {
   border-radius: 0;
   outline: none;
   width: 100%;
-  font-size: 16px;
+  font-size: 20px;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   height: 2.5rem!important;
   margin: 0 0 8px 0;
@@ -89,6 +90,24 @@ body {
   transform: translateY(-8px)scale(0.8);
   -webkit-transform-origin: 0 0;
   transform-origin: 0 0;
+}
+
+.hints {
+  border: 2px solid #26a69a;
+}
+
+.hints div {
+  background-color: #fff;
+  padding: 5px;
+  border-bottom: 1px solid #26a69a;
+}
+
+.hints div:hover {
+  background-color: #26a69a;
+}
+
+.hints .current {
+  background-color: DodgerBlue;
 }
 
 .f3 {

@@ -1,3 +1,5 @@
+import autocomplete from "./autocomplete"
+
 export default function initSearch(cont, store, updateIdFn) {
 
   const topEl = cont.appendChild(document.createElement("div"))
@@ -6,9 +8,13 @@ export default function initSearch(cont, store, updateIdFn) {
   searchField.classList.add("search-field")
   searchField.innerHTML = (`<input type="text" id="autocomplete-input" class="autocomplete">
     <label for="autocomplete-input">Поиск</label>
-    <div class="lds-roller-input-cont" style="display: none">
-      <div class="lds-roller" style="color: #9e9e9e"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    <div class="hints" style="display: none">
+      <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
     </div>`)
+
+    // style="color: #9e9e9e"
+
+  const search = autocomplete(searchField, makeCompletionItems(store.state.data), updateIdFn)
   const idField = topEl.appendChild(document.createElement("div"))
   idField.classList.add("id-field")
   idField.classList.add("content")
@@ -16,16 +22,15 @@ export default function initSearch(cont, store, updateIdFn) {
     <input id="id-input" type="text" value="${store.state.main_id}">
     <label for="id-input">ID:</label>`)
   
-//   const inputEl = document.getElementById('autocomplete-input')
   cont.addEventListener('focusin', (event) => {
-    const classList = event.srcElement.parentElement.classList
+    const classList = event.target.parentElement.classList
     classList.add('active')
     classList.add('content')
     // cont.classList.add('active')
   })
 
   cont.addEventListener('focusout', (event) => {
-    const el = event.srcElement
+    const el = event.target
     const classList = el.parentElement.classList
     classList.remove('active')
     if (el.value.trim().length === 0) {
@@ -33,6 +38,10 @@ export default function initSearch(cont, store, updateIdFn) {
     }
   })
 
+  searchField.addEventListener('focusin', () => search.show())
+  // searchField.addEventListener('focusout', () => search.hide())
+
+  idField.addEventListener('focusin', () => search.hide())
   idField.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       const text = event.srcElement.value.trim()
@@ -51,4 +60,24 @@ export default function initSearch(cont, store, updateIdFn) {
       }
     }
   }
+}
+
+function makeCompletionItems(data) {
+  return data.map((item) => {
+    let d = item.data
+    let text = (d.lastName || '')
+    text = addWord(text, d.firstName)
+    text = addWord(text, d.middleName)
+    return { 
+      id: item.id,
+      text: text
+    }
+  })
+}
+
+function addWord(result, word) {
+  if (word && word.length > 0) {
+    return result + ' ' + word
+  }
+  return result
 }
