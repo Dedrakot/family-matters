@@ -69,15 +69,6 @@ function cardDisplay(d) {
     adopted
 }
 
-const i18n = new Map()
-i18n.set('UNKNOWN_M', "Неизвестен")
-i18n.set('UNKNOWN_F', "Неизвестна")
-// country flags
-i18n.set('russia', "РФ")
-i18n.set('ussr', "СССР")
-i18n.set('usa', "США")
-i18n.set('germany', "ФРГ")
-
 function dateView(dateS) {
   if (dateS) {
     const d = dateS.split('-')
@@ -104,3 +95,13 @@ function isMan(gender) {
 function adoptedLabel(gender) {
   return isMan(gender) ? "приёмный" : "приёмная"   
 }
+
+const i18n = new Map()
+i18n.set('UNKNOWN_M', "Неизвестен")
+i18n.set('UNKNOWN_F', "Неизвестна")
+// country flags
+i18n.set('russia', "РФ")
+i18n.set('ussr', "СССР")
+i18n.set('usa', "США")
+i18n.set('germany', "ФРГ")
+i18n.set('russia_empire', "Российская империя")

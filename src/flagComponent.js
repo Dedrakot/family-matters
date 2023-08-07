@@ -5,12 +5,27 @@ export default function flagComponent() {
         images: (flags, card_dim, i18n) => {
             if (flags?.length > 0) {
                 return flags.map( (flag, idx, array) => {
-                    return `<svg x="${card_dim.w - 24 *(array.length - idx) - 3}px" y="5px" width="22px" height="16px" viewBox="${posMap.get(flag)} 22 16">
+                    let x = card_dim.w - 24 *(array.length - idx) - 3
+                    let imgPath
+                    if (imgPath = getSeparateFlag(flag)) {
+                        return `<image x="${x}px" y="5px" width="22px" height="16px" href="img/${imgPath}"><title>${i18n(flag)}</title></image>`
+                    }
+                    return `<svg x="${x}px" y="5px" width="22px" height="16px" viewBox="${posMap.get(flag)} 22 16">
                         <image href="img/flags.png"><title>${i18n(flag)}</title></image>
                     </svg>`
                 }).join('\n')
             }
             return ''
         }
-    } 
+    }
+
+    function getSeparateFlag(flag) {
+        switch(flag) {
+           case 'russia_empire':
+            return flag + '.jpg'
+           case 'ussr':
+            return flag + '.svg' 
+        }
+        return null
+    }
 }
