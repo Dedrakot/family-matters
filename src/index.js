@@ -1,6 +1,5 @@
 import createTree from "./ftree.js"
 import initSearch from "./search.js"
-import flagComponent from "./flagComponent.js"
 
 const familyChartEl = document.getElementById('familyChart')
 const data = global.getFamilyData()

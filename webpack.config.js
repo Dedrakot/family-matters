@@ -1,13 +1,20 @@
 const path = require('path')
 // const webpack = require('webpack')
 
+const isProduction = process.env.NODE_ENV === 'production' 
+
 module.exports = {
     entry: './src/index.js',
     target: ['web','es2020'],
     devServer: {
         port: 3000
     },
-    mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+    mode: isProduction ? 'production' : 'development',
+    resolve: {
+        alias: {
+            'env/const': path.resolve(__dirname, `env/const.${isProduction ? 'prod':'dev'}.js`)
+        }
+    },
     module: {
         rules: [
             { test: /\.svg$/, use: 'svg-inline-loader' },

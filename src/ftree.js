@@ -1,5 +1,7 @@
 import f3 from "./family-chart.js"
+import * as appConst from "env/const"
 import flagComponent from "./flagComponent.js"
+import infoComponent from "./infoComponent.js"
 
 export default function createTree(element, data, mainId, updateFn) {
   const store = f3.createStore({
@@ -19,6 +21,7 @@ export default function createTree(element, data, mainId, updateFn) {
   const imgW = 100, imgH = 100
   const textX = imgW + 10
   const flags = flagComponent()
+  const info = infoComponent(appConst.wikiUrl || "../family-wiki/site")
   const Card = f3.elements.Card({
     store,
     svg: view.svg,
@@ -26,7 +29,9 @@ export default function createTree(element, data, mainId, updateFn) {
     card_display: cardDisplay,
     mini_tree: true,
     link_break: true,
-    custom_elements: [{el: (d, card_dim) => flags.images(d.data.flags, card_dim, store.methods.i18n)}],
+    custom_elements: [{el: (d, card_dim) => flags.images(d.data.flags, card_dim, store.methods.i18n)},
+      {el: (d, card_dim) => info.button(d.data.info, card_dim), lis: info.listener, query: info.querySelector }
+    ],
   })
 
   view.setCard(Card)

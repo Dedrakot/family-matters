@@ -1,0 +1,1 @@
+export const wikiUrl = 'http://localhost:8000'

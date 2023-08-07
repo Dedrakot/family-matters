@@ -4,6 +4,7 @@
 /public/img
 /public/family-data.js
 /plan.txt
+/env/const.prod.js
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
