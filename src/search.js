@@ -1,6 +1,6 @@
 import autocomplete from "./autocomplete"
 
-export default function initSearch(cont, store, updateIdFn) {
+export function initSearch(cont, store, updateIdFn) {
 
   const topEl = cont.appendChild(document.createElement("div"))
   topEl.classList.add('top-el')
@@ -45,8 +45,7 @@ export default function initSearch(cont, store, updateIdFn) {
   idField.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       const text = event.srcElement.value.trim()
-      const id = parseInt(text)
-      updateIdFn(isNaN(id) || id != text ? text : id)
+      updateIdFn(parseId(text))
     }
   })
 
@@ -80,4 +79,9 @@ function addWord(result, word) {
     return result + ' ' + word
   }
   return result
+}
+
+export function parseId(text) {
+  const id = parseInt(text)
+  return isNaN(id) || id != text ? text : id
 }

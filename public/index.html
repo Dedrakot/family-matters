@@ -14,7 +14,14 @@
         <div id="searchField" class="search-container"></div>
         <div id="familyChart" class="f3"></div>
         <script src="family-data.js"></script>
-        <script>window.initialMainId = 4</script>
+        <script>
+            function initialMainId() {
+                const queryString = window.location.search
+                const urlParams = new URLSearchParams(queryString);
+                return urlParams.get('id') || 6 // id of person you wish to be the center one when page opened or set undefined to open first data element
+            }
+            window.initialMainId = initialMainId()
+        </script>
         <script src='bundle.js'></script>
     </body>
 </html>

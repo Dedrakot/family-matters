@@ -11,8 +11,7 @@ export default function createTree(element, data, mainId, updateFn) {
     level_separation: 150,
     i18n: i18n,
     defaultMaleAvatar: "img/no_image_male.jpg",
-    defaultFemaleAvatar: "img/no_image_female.svg",
-    // defaultAvatar: "img/no_image.jpg"
+    defaultFemaleAvatar: "img/no_image_female.svg"
   })
   const view = f3.d3AnimationView({
     store,
