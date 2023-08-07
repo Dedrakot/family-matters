@@ -26,7 +26,7 @@ export default function createTree(element, data, mainId, updateFn) {
     card_display: cardDisplay,
     mini_tree: true,
     link_break: true,
-    custom_elements: [{el: (d, card_dim) => flags.images(d.data.flags, card_dim)}],
+    custom_elements: [{el: (d, card_dim) => flags.images(d.data.flags, card_dim, store.methods.i18n)}],
   })
 
   view.setCard(Card)
@@ -72,6 +72,11 @@ function cardDisplay(d) {
 const i18n = new Map()
 i18n.set('UNKNOWN_M', "Неизвестен")
 i18n.set('UNKNOWN_F', "Неизвестна")
+// country flags
+i18n.set('russia', "РФ")
+i18n.set('ussr', "СССР")
+i18n.set('usa', "США")
+i18n.set('germany', "ФРГ")
 
 function dateView(dateS) {
   if (dateS) {
