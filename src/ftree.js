@@ -20,7 +20,7 @@ export default function createTree(element, data, mainId, updateFn) {
   const imgW = 100, imgH = 100
   const textX = imgW + 10
   const flags = flagComponent()
-  const info = infoComponent(appConst.wikiUrl || "../family-wiki/site")
+  const info = infoComponent(appConst.wikiUrl || "wiki")
   const Card = f3.elements.Card({
     store,
     svg: view.svg,

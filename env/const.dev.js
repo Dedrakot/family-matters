@@ -1,1 +1,1 @@
-export const wikiUrl = 'http://localhost:8000'
+// export const wikiUrl = 'http://localhost:8000'
