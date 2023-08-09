@@ -10,9 +10,8 @@ export function initSearch(cont, store, updateIdFn) {
     <label for="autocomplete-input">Поиск</label>
     <div class="hints" style="display: none">
       <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+      <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
     </div>`)
-
-    // style="color: #9e9e9e"
 
   const search = autocomplete(searchField, makeCompletionItems(store.state.data), updateIdFn)
   const idField = topEl.appendChild(document.createElement("div"))
@@ -65,6 +64,10 @@ function makeCompletionItems(data) {
   return data.map((item) => {
     let d = item.data
     let text = (d.lastName || '')
+    if (d.maidenName || d.formerLastNames?.length > 0) {
+      text +=` (${d.maidenName || ''}${d.formerLastNames?.map(n=>' '+n).join('') || ''})`
+    }
+
     text = addWord(text, d.firstName)
     text = addWord(text, d.middleName)
     return { 

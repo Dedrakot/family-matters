@@ -5,7 +5,7 @@ export default function autocomplete(cont, items, updateIdFn) {
         preset: "default",
         tokenize: "forward",
         encode: function(val) {
-            return val.toLowerCase().replace("ё", "е").split(' ')
+            return val.toLowerCase().replace(/[()]/,'').replace('ё', 'е').split(' ')
         }
     });
 

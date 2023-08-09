@@ -2,6 +2,7 @@ import f3 from "./family-chart.js"
 import * as appConst from "env/const"
 import flagComponent from "./flagComponent.js"
 import infoComponent from "./infoComponent.js"
+import {isMan} from "./dataUtils.js"
 
 export default function createTree(element, data, mainId, updateFn) {
   const store = f3.createStore({
@@ -91,10 +92,6 @@ function dateView(dateS) {
     return ''
   }
 }
-
-function isMan(gender) {
-  return gender === 'M'
-} 
 
 function adoptedLabel(gender) {
   return isMan(gender) ? "приёмный" : "приёмная"   
