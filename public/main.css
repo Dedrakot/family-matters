@@ -116,6 +116,14 @@ body {
   margin: auto;
   position: relative;
 }
+
+.f3 .info {
+  opacity: 0.7;
+}
+
+.f3 .info:hover {
+  opacity: 1;
+}
   
 .f3 .cursor-pointer {
   cursor: pointer;
