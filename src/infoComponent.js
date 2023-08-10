@@ -9,7 +9,7 @@ export default function infoComponent(wikiUrl) {
         },
         listener: (store, {card, d}) => {
             const item = d.data
-            window.open(wikiUrl + '/' + (item.data.info || ("люди/" + item.id)), "_self");
+            window.open(wikiUrl + '/' + (item.data.info || ("люди/" + item.id + ".html")), "_self");
         },
         querySelector: '.info'
     }
